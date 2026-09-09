@@ -5,10 +5,18 @@ catalogo_negocio = [
 ]
 
 
+def buscar_producto(catalogo, nombre_buscado):
+    for producto in catalogo:
+        if producto["nombre"].lower() == nombre_buscado.lower():
+            return producto
+    return None
+
+
 def main():
     while True:
         print("0. Salir")
         print("1. Ver catalogo completo")
+        print("2. Buscar un producto")
         opcion = input("Elige una opcion: ")
 
         if opcion == "0":
@@ -18,6 +26,14 @@ def main():
         elif opcion == "1":
             for producto in catalogo_negocio:
                 print(f"{producto['nombre']}: ${producto['precio']}")
+
+        elif opcion == "2":
+            nombre = input("Ingrese el nombre del producto: ")
+            producto = buscar_producto(catalogo_negocio, nombre)
+            if producto is not None:
+                print(f"{producto['nombre']}: ${producto['precio']}")
+            else:
+                print("producto no encontrado")
 
 
 if __name__ == "__main__":
