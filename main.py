@@ -5,6 +5,11 @@ catalogo_negocio = [
 ]
 
 
+class Negocio:
+    def __init__(self, catalogo):
+        self.catalogo = catalogo
+
+
 def buscar_producto(catalogo, nombre_buscado):
     for producto in catalogo:
         if producto["nombre"].lower() == nombre_buscado.lower():
@@ -22,15 +27,14 @@ def agregar_producto(catalogo, nombre, precio, disponible):
     return nuevo_producto
 
 
-def producto_disponible(catalogo, disponible):
-    productos_disponibles = []
-    for producto in catalogo:
-        if producto["disponibilidad"] == disponible:
-            productos_disponibles.append(producto)
-    return productos_disponibles
+def producto_disponible(catalogo, disponible=None):
+    if disponible is not None:
+        productos_disponibles = []
+        for producto in catalogo:
+            if producto["disponibilidad"] == disponible:
+                productos_disponibles.append(producto)
+        return productos_disponibles
 
-
-def main():
     while True:
         print("0. Salir")
         print("1. Ver catalogo completo")
@@ -68,5 +72,12 @@ def main():
                 print(f"{producto['nombre']}: ${producto['precio']}")
 
 
+def main():
+    producto_disponible(catalogo_negocio)
+
+
 if __name__ == "__main__":
     main()
+
+
+
