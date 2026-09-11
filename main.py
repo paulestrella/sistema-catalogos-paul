@@ -19,15 +19,20 @@ class Negocio:
                 return producto
         return None
 
+    def agregar_producto(self, nombre, precio, disponible):
+        try:
+            precio_numero = float(precio)
+        except ValueError:
+            print("El precio debe ser un numero. Producto no agregado")
+            return None
 
-def agregar_producto(catalogo, nombre, precio, disponible):
-    nuevo_producto = {
-        "nombre": nombre,
-        "precio": precio,
-        "disponibilidad": disponible
-    }
-    catalogo.append(nuevo_producto)
-    return nuevo_producto
+        nuevo_producto = {
+            "nombre": nombre,
+            "precio": precio_numero,
+            "disponibilidad": disponible
+        }
+        self.catalogo.append(nuevo_producto)
+        return nuevo_producto
 
 
 def producto_disponible(catalogo, disponible=None):
@@ -65,10 +70,12 @@ def producto_disponible(catalogo, disponible=None):
 
         elif opcion == "3":
             nombre = input("Ingrese el nombre del producto: ")
-            precio = float(input("Ingrese el precio del producto: "))
+            precio = input("Ingrese el precio del producto: ")
             disponible = True
-            producto = agregar_producto(catalogo_negocio, nombre, precio, disponible)
-            print(f"Se agrego el producto: {producto['nombre']} - ${producto['precio']}")
+            negocio = Negocio(catalogo_negocio)
+            producto = negocio.agregar_producto(nombre, precio, disponible)
+            if producto is not None:
+                print(f"Se agrego el producto: {producto['nombre']} - ${producto['precio']}")
 
         elif opcion == "4":
             productos = producto_disponible(catalogo_negocio, True)
