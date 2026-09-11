@@ -13,12 +13,11 @@ class Negocio:
         for producto in self.catalogo:
             print(f"{producto['nombre']}: ${producto['precio']}")
 
-
-def buscar_producto(catalogo, nombre_buscado):
-    for producto in catalogo:
-        if producto["nombre"].lower() == nombre_buscado.lower():
-            return producto
-    return None
+    def buscar_producto(self, nombre_buscado):
+        for producto in self.catalogo:
+            if producto["nombre"].lower() == nombre_buscado.lower():
+                return producto
+        return None
 
 
 def agregar_producto(catalogo, nombre, precio, disponible):
@@ -57,7 +56,8 @@ def producto_disponible(catalogo, disponible=None):
 
         elif opcion == "2":
             nombre = input("Ingrese el nombre del producto: ")
-            producto = buscar_producto(catalogo_negocio, nombre)
+            negocio = Negocio(catalogo_negocio)
+            producto = negocio.buscar_producto(nombre)
             if producto is not None:
                 print(f"{producto['nombre']}: ${producto['precio']}")
             else:
