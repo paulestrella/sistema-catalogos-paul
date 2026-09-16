@@ -35,3 +35,11 @@ class Negocio:
 			if producto["disponibilidad"] is True:
 				productos_disponibles.append(producto)
 		return productos_disponibles
+
+
+
+# if __name__ == "__main__":
+#     catalogo_prueba = [{"nombre": "producto de prueba", "precio": 10.0, "disponibilidad": True}]
+#     negocio_prueba = Negocio(catalogo_prueba)
+#     print("corriendo negocio.py directamente")
+#     negocio_prueba.ver_catalogo()	
