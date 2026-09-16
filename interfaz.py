@@ -33,3 +33,7 @@ def menu(negocio):
 			productos = negocio.producto_disponible()
 			for producto in productos:
 				print(f"{producto['nombre']}: ${producto['precio']}")
+
+
+if __name__ == "__main__":
+	menu()
